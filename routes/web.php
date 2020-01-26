@@ -20,6 +20,8 @@ Route::get('/', function(){
 //Route::get('/about','HelloController@about');
 Route::get('/services','HelloController@services');
 Route::get('/courses', 'HelloController@courses');
+Route::post('/create', 'HelloController@create');
+
 
 Route::view('/about','about');
 // Route::view('/services','services');
