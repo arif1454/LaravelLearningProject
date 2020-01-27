@@ -17,11 +17,13 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-//Route::get('/about','HelloController@about');
-Route::get('/services','HelloController@services');
-Route::get('/courses', 'HelloController@courses');
-Route::post('/create', 'HelloController@create');
+Route::get('/services','ServiceController@index');
+Route::post('/service/add','ServiceController@store');
+Route::post('/service/update/{id}','ServiceController@update');
 
+Route::get('/courses','CourseController@index');
+Route::post('/create/course','CourseController@store');
+Route::post('/course/update/{id}','CourseController@update');
+Route::get('/course/delete/{id}','CourseController@destroy');
 
 Route::view('/about','about');
-// Route::view('/services','services');

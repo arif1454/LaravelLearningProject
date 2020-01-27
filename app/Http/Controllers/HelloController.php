@@ -5,14 +5,9 @@ use Illuminate\Http\Request;
 
 class HelloController extends Controller
 {
-    public $services = [
-        'Service 1',
-        'Service 2',
-        'Service 3',
-        'Service 4',
-    ];
+    
 
-    public $courses = ['Bangla', 'English'];
+    public $courses = [];
     public $teachers = ['Salman', 'Ibrahim'];
 
     public function about()
@@ -22,7 +17,6 @@ class HelloController extends Controller
 
     public function services()
     {
-        return view('services', ['services' => $this->services]); // first service is blade, second service is a variable that you want to show on service blade/page
     }
 
     public function courses()
@@ -41,6 +35,7 @@ class HelloController extends Controller
             'courses' => $this->courses,
             'teachers' => $this->teachers,
         ]);
+        
     }
 
 }
