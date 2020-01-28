@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use App\Post;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() // show all
+    public function index($post)
     {
-        $c_courses = Course::all(); 
-
-        return view('/courses', [
-            'b_courses' => $c_courses
-        ]);
+        
+            $posts = [
+                    'my-first-post' => 'Hello, this is my first blog post!',
+                    'my-second-post' => 'Now I am getting the hang of this blogging thing.'
+                ];
+        
+            if (! array_key_exists($post, $posts)){
+                abort(404, 'sorry, the post was not found.');
+            }
+        
+            return view('post',[
+                'post' => $posts[$post]
+            ]);
+       
     }
 
     /**
@@ -26,7 +35,7 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() // redirects a page that creates a record
+    public function create()
     {
         //
     }
@@ -39,22 +48,16 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $course_name = $request->input('course_name'); // name, not id
-
-        Course::create([
-            'name' => $course_name,
-        ]);
-
-        return redirect('/courses');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\course  $course
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)    // show a single record
+    public function show(Post $post)
     {
         //
     }
@@ -62,10 +65,10 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\course  $course
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit() // redirects a page that updates a record
+    public function edit(Post $post)
     {
         //
     }
@@ -74,31 +77,22 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\course  $course
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) // update a record
+    public function update(Request $request, Post $post)
     {
-        $course = Course::find($id);
-
-        $course->update([
-            'name' => $request->input('course_name'),
-        ]);
-
-        return redirect('/courses');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\course  $course
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $course = Course::find($id);
-        $course->delete();
-
-        return redirect('/courses');
+        //
     }
 }

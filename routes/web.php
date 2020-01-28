@@ -14,7 +14,12 @@
 // use Illuminate\Routing\Route;
 
 Route::get('/', function(){
-    return view('welcome');
+    $name = request('name');
+
+    return view('test', [
+        'name' => $name
+    ]);
+    //return view('test');
 });
 
 Route::get('/services','ServiceController@index');
@@ -26,4 +31,7 @@ Route::post('/create/course','CourseController@store');
 Route::post('/course/update/{id}','CourseController@update');
 Route::get('/course/delete/{id}','CourseController@destroy');
 
-Route::view('/about','about');
+
+
+Route::get('/posts/{post}','PostController@index');
+

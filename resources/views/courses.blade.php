@@ -15,7 +15,7 @@
                         <input type="text" name="course_name" id="course_name" placeholder="Course Name" />
                         <button type="submit"> Update </button>
                 </form>
-                        <button onclick="location.href='{{ url('/course/delete/' . $course->id) }}'">Delete</button>           
+                <button onclick="location.href='{{ url('/course/delete/' . $course->id) }}'">Delete</button>           
             </li>
         @endforeach
     </ul>
